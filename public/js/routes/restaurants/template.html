@@ -1,6 +1,12 @@
 <div class="container">
   <h2>Restaurants</h2>
-  <input type="text" ng-model="searchText">
+  <p>Filter in page</p>
+  <input type="text" ng-model="filterPage">
+  <p>Filter by borough API</p>
+  <input type="text" ng-model="filterBoroughApi">
+  <p>Filter by cuisine API</p>
+  <input type="text" ng-model="filterCuisineApi">
+  <br>
   <input type="button" ng-click="vm.pageHandler($event)" value="Pre">
   <input type="button" ng-click="vm.pageHandler($event)" value="Advance">
   <table class="table">
@@ -12,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="restaurant in vm.restaurants | filter: searchText">
+      <tr ng-repeat="restaurant in vm.restaurants | filter: filterPage">
         <td><a ng-href="#!/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
         <td>{{restaurant.borough}}</td>
         <td>{{restaurant.cuisine}}</td>
