@@ -2,10 +2,11 @@
 (function () {
   'use strict'
 
-  function getRestaurantById (DataServices) {
+  function restaurantCtrl (DataServices, $routeParams) {
     var vm = this
-    DataServices.getRestaurantById()
-    .then(console.log)
+    vm.id = $routeParams.id
+    // DataServices.getRestaurantById(vm.id)
+    // .then(console.log)
   }
 
   angular
