@@ -1,22 +1,22 @@
 angular.module('Restaurants')
   .factory('DataServices', function ($http) {
     function getAllRestaurants () {
-      const url = `/api/restaurants?limit=null`
+      var url = `/api/restaurants?limit=null`
       return $http.get(url)
     }
 
     function getRestaurantById (id) {
-      const url = '/api/restaurant/' + id
+      var url = '/api/restaurant/' + id
       return $http.get(url)
     }
 
     function getRestaurantsByBorough (borough) {
-      const url = `/api/restaurants/borough/${borough}?&limit=null`
+      var url = `/api/restaurants/borough/${borough}?limit=null`
       return $http.get(url)
     }
 
     function getRestaurantsByCuisine (cuisine) {
-      const url = `/api/restaurants/cuisine/${cuisine}?&limit=null`
+      var url = `/api/restaurants/cuisine/${cuisine}?limit=null`
       return $http.get(url)
     }
 

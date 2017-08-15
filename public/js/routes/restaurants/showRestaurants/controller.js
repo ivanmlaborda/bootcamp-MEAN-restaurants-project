@@ -6,15 +6,22 @@
     var self = this
     showResults.bind(null, DataServices, self)()
     $scope.$on('onFilterBorough', function (e, value) {
-      showFilteredResults.bind(null, DataServices, self, value.value)()
+      filterByBorough.bind(null, DataServices, self, value.value)()
     })
     $scope.$on('onFilterCuisine', function (e, value) {
-      showFilteredResults.bind(null, DataServices, self, value.value)()
+      filterByCuisine.bind(null, DataServices, self, value.value)()
     })
   }
 
-  function showFilteredResults (DataServices, self, borough) {
+  function filterByBorough (DataServices, self, borough) {
     DataServices.getRestaurantsByBorough(borough)
+    .then(function (restaurants) {
+      self.restaurants = restaurants.data
+    })
+  }
+
+  function filterByCuisine (DataServices, self, borough) {
+    DataServices.getRestaurantsByCuisine(borough)
     .then(function (restaurants) {
       self.restaurants = restaurants.data
     })
@@ -26,6 +33,7 @@
       self.restaurants = restaurants.data
     })
   }
+
   angular
   .module('Restaurants')
   .controller('restaurantsCtrl', restaurantsCtrl)

@@ -27,7 +27,7 @@
             <tr dir-paginate="restaurant in vm.restaurants | itemsPerPage: 10 | filter: searchText">
               <td><a ng-href="#!/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
               <td><a ng-href="#!/restaurants/borough/{{restaurant.borough}}">{{restaurant.borough}}</a></td>
-              <td>{{restaurant.cuisine}}</td>
+              <td><a ng-href="#!/restaurants/cuisine/{{restaurant.cuisine}}">{{restaurant.cuisine}}</a></td>
           </tbody>
         </table>
         <div class="pagination">
