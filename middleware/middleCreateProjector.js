@@ -1,6 +1,6 @@
 const middleCreateProjector = (req, res, next) => {
   req.projection = {}
-  const { show = '', hide = '', limit = 20, page = 5} = req.query
+  const { show = '', hide = '', limit = 10, page = 1} = req.query
   const oShow = show.split(',').reduce((acc, field) => {
     if (field) {
       acc[field] = 1

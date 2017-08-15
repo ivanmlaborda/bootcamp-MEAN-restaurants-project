@@ -1,6 +1,6 @@
-(function() {
+(function () {
   angular.module('Restaurants', ['ngRoute'])
-  .run( function(){
+  .run(function () {
     console.log('Angular wins')
   })
 })()
