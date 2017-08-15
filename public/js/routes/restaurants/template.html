@@ -15,6 +15,16 @@
  </div>
 <div class="row">
     <div ng-controller="restaurantsCtrl as vm">
+      <br>
+      <div>
+        <select ng-model="vm.pageSelect" ng-change="vm.handlePage()">
+          <option ng-value="10" selected disabled>Items per page</option>
+          <option ng-value="10">10</option>
+          <option ng-value="20">20</option>
+          <option ng-value="50">50</option>
+          <option ng-value="100">100</option>
+        </select>
+      </div>
         <table class="table">
           <thead>
             <tr>
@@ -24,7 +34,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr dir-paginate="restaurant in vm.restaurants | itemsPerPage: 10 | filter: searchText">
+            <tr dir-paginate="restaurant in vm.restaurants | itemsPerPage: vm.pageSelect | filter: searchText">
               <td><a ng-href="#!/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
               <td><a ng-href="#!/restaurants/borough/{{restaurant.borough}}">{{restaurant.borough}}</a></td>
               <td><a ng-href="#!/restaurants/cuisine/{{restaurant.cuisine}}">{{restaurant.cuisine}}</a></td>

@@ -11,6 +11,11 @@
     $scope.$on('onFilterCuisine', function (e, value) {
       filterByCuisine.bind(null, DataServices, self, value.value)()
     })
+    self.handlePage = function() {
+      console.log('Hola')
+      self.pageSelect = self.pageSelect || 10
+    }
+    console.log('fuera')
   }
 
   function filterByBorough (DataServices, self, borough) {
