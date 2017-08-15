@@ -9,8 +9,15 @@ angular.module('Restaurants')
       var url = '/api/restaurant/' + id
       return $http.get(url)
     }
+
+    function getRestaurantsByBorough (borough) {
+      var url = '/api/restaurants/borough/' + borough
+      return $http.get(url)
+    }
+
     return {
       getAllRestaurants: getAllRestaurants,
-      getRestaurantById: getRestaurantById
+      getRestaurantById: getRestaurantById,
+      getRestaurantsByBorough: getRestaurantsByBorough
     }
   })
