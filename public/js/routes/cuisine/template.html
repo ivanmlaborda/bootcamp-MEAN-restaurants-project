@@ -13,7 +13,7 @@
         <tr ng-repeat="restaurant in vm.restaurants">
           <td><a ng-href="#!/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
           <td>{{restaurant.address.street}}</td>
-          <td>{{restaurant.borough}}</td>
+          <td><a ng-href="#!/restaurants/borough/{{restaurant.borough}}">{{restaurant.borough}}</a></td>
           <td>{{restaurant.cuisine}}</td>
       </tbody>
       </tbody>

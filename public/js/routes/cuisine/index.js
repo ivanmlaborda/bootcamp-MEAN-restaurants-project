@@ -5,7 +5,7 @@
 
 .config(function ($routeProvider) {
   $routeProvider
-    .when('/cuisine/:cuisine', {
+    .when('/restaurants/cuisine/:cuisine', {
       templateUrl: 'js/routes/cuisine/template.html',
       controller: 'cuisineCtrl',
       controllerAs: 'vm'

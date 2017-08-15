@@ -11,12 +11,12 @@ angular.module('Restaurants')
     }
 
     function getRestaurantsByBorough (borough) {
-      var url = `/api/restaurants/borough/${borough}?limit=null`
+      const url = `/api/restaurants/borough/${borough}?limit=null`
       return $http.get(url)
     }
 
     function getRestaurantsByCuisine (cuisine) {
-      var url = `/api/restaurants/cuisine/${cuisine}?limit=null`
+      const url = `/api/restaurants/cuisine/${cuisine}?limit=null`
       return $http.get(url)
     }
 
