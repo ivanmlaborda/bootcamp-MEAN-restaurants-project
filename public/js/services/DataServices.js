@@ -15,8 +15,8 @@ angular.module('Restaurants')
       return $http.get(url)
     }
 
-    function getRestaurantsByCuisine (cuisine, page) {
-      var url = `/api/restaurants/cuisine/${cuisine}?page=${page}&limit=null`
+    function getRestaurantsByCuisine (cuisine) {
+      const url = `/api/restaurants/cuisine/${cuisine}?&limit=null`
       return $http.get(url)
     }
 
