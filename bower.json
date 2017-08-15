@@ -1,0 +1,22 @@
+{
+  "name": "demo-api-mongo",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "devtoni <devtonirm@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ivanmlaborda/bootcamp-MEAN-restaurants-project",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "angular-loading-bar": "^0.9.0",
+    "angular-route": "^1.6.5"
+  }
+}
