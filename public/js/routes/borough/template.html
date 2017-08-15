@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>Borough</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Street</th>
+          <th>Borough</th>
+          <th>Cuisine</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="restaurant in vm.restaurants">
+          <td><a ng-href="#!/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
+          <td>{{restaurant.address.street}}</td>
+          <td>{{restaurant.borough}}</td>
+          <td>{{restaurant.cuisine}}</td>
+      </tbody>
+      </tbody>
+    </table>
+  </div>
