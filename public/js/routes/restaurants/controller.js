@@ -4,10 +4,14 @@
 
   function restaurantsCtrl (DataServices) {
     var vm = this
-    DataServices.getAllRestaurants()
-    .then(function (restaurants) {
-      vm.restaurants = restaurants.data
-    })
+    var page = 0
+    vm.page = function () {
+      page++
+      DataServices.getAllRestaurants(page)
+      .then(function (restaurants) {
+        vm.restaurants = restaurants.data
+      })
+    }
   }
 
   angular
