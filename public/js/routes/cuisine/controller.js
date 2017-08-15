@@ -5,7 +5,7 @@
   function cuisineCtrl ($routeParams, DataServices) {
     var vm = this
     var cuisine = $routeParams.cuisine
-    DataServices.getRestaurantsByBorough(cuisine)
+    DataServices.getRestaurantsByCuisine(cuisine)
     .then(function (restaurant) {
       vm.restaurants = restaurant.data
       console.log(vm.restaurants)
