@@ -5,7 +5,9 @@
   function restaurantsCtrl (DataServices) {
     var vm = this
     DataServices.getAllRestaurants()
-    .then(console.log)
+    .then(function (restaurants) {
+      vm.restaurants = restaurants.data
+    })
   }
 
   angular

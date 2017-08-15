@@ -1,12 +1,16 @@
 angular.module('Restaurants')
-  .factory('DataServices', function($http) {
-
-      function getAllRestaurants() {
+  .factory('DataServices', function ($http) {
+    function getAllRestaurants () {
         var url = '/api/restaurants'
         return $http.get(url)
       }
 
-      return {
-        getAllRestaurants: getAllRestaurants
+    function getRestaurantById () {
+        var url = '/api/restaurant/:id'
+        return $http.get(url)
+      }
+    return {
+        getAllRestaurants: getAllRestaurants,
+        getRestaurantById: getRestaurantById
       }
   })
