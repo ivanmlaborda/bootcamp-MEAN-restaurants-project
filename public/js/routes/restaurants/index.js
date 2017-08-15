@@ -6,9 +6,7 @@
 .config(function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'js/routes/restaurants/template.html',
-      controller: 'restaurantsCtrl',
-      controllerAs: 'vm'
+      templateUrl: 'js/routes/restaurants/template.html'
     })
 })
 })()
