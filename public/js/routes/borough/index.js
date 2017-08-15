@@ -5,7 +5,7 @@
 
 .config(function ($routeProvider) {
   $routeProvider
-    .when('/borough/:borough', {
+    .when('/restaurants/borough/:borough', {
       templateUrl: 'js/routes/borough/template.html',
       controller: 'boroughCtrl',
       controllerAs: 'vm'
