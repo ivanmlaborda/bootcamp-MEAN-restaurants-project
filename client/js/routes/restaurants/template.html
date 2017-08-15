@@ -2,11 +2,11 @@
     <h2>Restaurants</h2>
  <div class="row">
     <div ng-controller="filterCtrl as vm">
-        <form action="" class="borough" ng-submit="vm.filterBorough(vm.filterBoroughApi)" >
+        <form action="" class="borough" ng-submit="vm.filterBorough($event, vm.filterBoroughApi)" >
             <p>Filter by borough API</p>
             <input type="text" ng-model="vm.filterBoroughApi">
         </form>
-        <form action="" class="cuisine" ng-submit="vm.filterCuisine(vm.filterCuisineApi)" >
+        <form action="" class="cuisine" ng-submit="vm.filterCuisine($event, vm.filterCuisineApi)" >
             <p>Filter by cuisine API</p>
             <input type="text" ng-model="vm.filterCuisineApi">
         </form>
@@ -16,6 +16,7 @@
 <div class="row">
     <div ng-controller="restaurantsCtrl as vm">
       <br>
+      <input type="button" value="Next" ng-click="vm.next()">
       <div>
         <select ng-model="vm.pageSelect" ng-change="vm.handlePage()">
           <option ng-value="10" selected disabled>Items per page</option>
@@ -28,21 +29,20 @@
         <table class="table">
           <thead>
             <tr>
+              <th>Num</th>
               <th>Name</th>
               <th>Borough</th>
               <th>Cuisine</th>
             </tr>
           </thead>
           <tbody>
-            <tr dir-paginate="restaurant in vm.restaurants | itemsPerPage: vm.pageSelect | filter: searchText">
+            <tr dir-paginate="restaurant in vm.restaurants | itemsPerPage: vm.pageSelect| filter: searchText " total-items="vm.totalRestaurants" current-page="vm.numPage" >
+              <td>{{ ($index + 1) + (vm.numPage - 1) * vm.pageSelect }}</td>
               <td><a ng-href="#!/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
               <td><a ng-href="#!/restaurants/borough/{{restaurant.borough}}">{{restaurant.borough}}</a></td>
               <td><a ng-href="#!/restaurants/cuisine/{{restaurant.cuisine}}">{{restaurant.cuisine}}</a></td>
           </tbody>
         </table>
-        <div class="pagination">
-            <dir-pagination-controls [max-size="10" ] [direction-links="true " ] [boundary-links="true " ]>
-            </dir-pagination-controls>
-          </div>
+        <dir-pagination-controls on-page-change="vm.next(newPageNumber)"></dir-pagination-controls>
      </div>
 </div>

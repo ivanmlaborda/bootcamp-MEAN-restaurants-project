@@ -4,10 +4,12 @@
 
   function filterCtrl (DataServices, $rootScope) {
     var self = this
-    self.filterBorough = function (value) {
+    self.filterBorough = function (e, value) {
+      e.preventDefault()
       $rootScope.$broadcast('onFilterBorough', { value: value})
     }
-    self.filterCuisine = function (value) {
+    self.filterCuisine = function (e, value) {
+      e.preventDefault()
       $rootScope.$broadcast('onFilterCuisine', { value: value})
     }
   }
