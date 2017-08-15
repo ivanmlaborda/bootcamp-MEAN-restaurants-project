@@ -1,7 +1,9 @@
 const { MongoClient } = require('mongodb')
 const express = require('express')
 
+const path = require('path')
 const app = express()
+const pathPublic = path.join(__dirname, 'public')
 const urlDb = 'mongodb://localhost:27017/test'
 const PORT = 3001
 
@@ -10,6 +12,10 @@ const getAllRestaurants = require('./handlers/getAllRestaurants')
 const byBorough = require('./handlers/byBorough')
 const byCuisine = require('./handlers/byCuisine')
 const getRestaurantById = require('./handlers/getRestaurantById')
+
+app.use(express.static(pathPublic))
+
+
 
 MongoClient.connect(urlDb, (err, db) => {
   if (err) throw err
