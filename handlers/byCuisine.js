@@ -1,5 +1,5 @@
 function byCuisine (db, not, req, res) {
-  const { limit, projection, offset } = req
+  const { projection, limit, skip } = req
   const { cuisine } = req.params
   const query = { cuisine }
   if (not) {
@@ -9,7 +9,7 @@ function byCuisine (db, not, req, res) {
   db.collection('restaurants')
     .find(query, projection)
     .limit(limit)
-    .skip(offset)
+    .skip(skip)
     .toArray((err, aRestaurants) => {
       if (err) throw err
       res.json(aRestaurants)

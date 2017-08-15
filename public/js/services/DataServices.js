@@ -1,7 +1,7 @@
 angular.module('Restaurants')
   .factory('DataServices', function ($http) {
-    function getAllRestaurants (page) {
-      var url = `/api/restaurants?page=${page}&limit=null`
+    function getAllRestaurants () {
+      var url = `/api/restaurants?limit=null`
       return $http.get(url)
     }
 
@@ -11,7 +11,7 @@ angular.module('Restaurants')
     }
 
     function getRestaurantsByBorough (borough, page) {
-      var url = `/api/restaurants/borough/${borough}?page=${page}&limit=null`
+      var url = `/api/restaurants/borough/${borough}?&limit=null`
       return $http.get(url)
     }
 

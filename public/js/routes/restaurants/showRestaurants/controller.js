@@ -4,34 +4,25 @@
 
   function restaurantsCtrl (DataServices, $scope) {
     var self = this
-    // self.page = 1
-    showResults.bind(null, DataServices, self, self.page)()
-
-    $scope.$on('onValueReady', function (e, value) {
-      showFilteredResults.bind(null, DataServices, self, value.value, self.page)()
+    showResults.bind(null, DataServices, self)()
+    $scope.$on('onFilterBorough', function (e, value) {
+      showFilteredResults.bind(null, DataServices, self, value.value)()
     })
-
-    // self.pageHandler = function (e) {
-    //   var valueBtn = e.target.value
-    //   if (valueBtn === 'Advance') self.page++
-    //   else if (valueBtn === 'Pre' && self.page > 1) self.page--
-    //   else self.page = 1
-    //   showResults.bind(null, DataServices, self, self.page)()
-    // }
+    $scope.$on('onFilterCuisine', function (e, value) {
+      showFilteredResults.bind(null, DataServices, self, value.value)()
+    })
   }
 
-  function showFilteredResults (DataServices, self, borough, page) {
-    DataServices.getRestaurantsByBorough(borough, page)
+  function showFilteredResults (DataServices, self, borough) {
+    DataServices.getRestaurantsByBorough(borough)
     .then(function (restaurants) {
-      console.log(restaurants.data.length)
       self.restaurants = restaurants.data
     })
   }
 
-  function showResults (DataServices, self, page) {
-    DataServices.getAllRestaurants(page)
+  function showResults (DataServices, self) {
+    DataServices.getAllRestaurants()
     .then(function (restaurants) {
-      console.log(restaurants.data.length)
       self.restaurants = restaurants.data
     })
   }
@@ -39,3 +30,12 @@
   .module('Restaurants')
   .controller('restaurantsCtrl', restaurantsCtrl)
 })()
+
+// self.page = 1
+   // self.pageHandler = function (e) {
+    //   var valueBtn = e.target.value
+    //   if (valueBtn === 'Advance') self.page++
+    //   else if (valueBtn === 'Pre' && self.page > 1) self.page--
+    //   else self.page = 1
+    //   showResults.bind(null, DataServices, self, self.page)()
+    // }

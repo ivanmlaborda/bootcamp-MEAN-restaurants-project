@@ -4,9 +4,13 @@
 
   function filterCtrl (DataServices, $rootScope) {
     var self = this
-    self.getValue = function (value) {
-      console.log(value)
-      $rootScope.$broadcast('onValueReady', { value: value})
+    self.filterBorough = function (e, value) {
+      console.log(e)
+      $rootScope.$broadcast('onFilterBorough', { value: value})
+    }
+    self.filterCuisine = function (e, value) {
+      console.log(e)
+      $rootScope.$broadcast('onFilterCuisine', { value: value})
     }
   }
   angular

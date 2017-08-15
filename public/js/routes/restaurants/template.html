@@ -2,13 +2,11 @@
     <h2>Restaurants</h2>
  <div class="row">
     <div ng-controller="filterCtrl as vm">
-        <p>Filter in page</p>
-        <input type="text" ng-model="filterPage">
-        <form action="" class="borough" ng-submit="vm.getValue(vm.filterBoroughApi)">
+        <form action="" class="borough" ng-submit="vm.filterBorough(vm.filterBoroughApi)" >
             <p>Filter by borough API</p>
             <input type="text" ng-model="vm.filterBoroughApi">
         </form>
-        <form action="" class="cuisine" ng-submit="vm.getValue(vm.filterCuisineApi)">
+        <form action="" class="cuisine" ng-submit="vm.filterCuisine(vm.filterCuisineApi)" >
             <p>Filter by cuisine API</p>
             <input type="text" ng-model="vm.filterCuisineApi">
         </form>
@@ -17,8 +15,6 @@
  </div>
 <div class="row">
     <div ng-controller="restaurantsCtrl as vm">
-        <input type="button" ng-click="vm.pageHandler($event)" value="Pre">
-        <input type="button" ng-click="vm.pageHandler($event)" value="Advance">
         <table class="table">
           <thead>
             <tr>
