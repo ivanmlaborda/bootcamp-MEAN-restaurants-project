@@ -1,4 +1,4 @@
-const Restaurant = require('../models/RestaurantMdl.js')
+const Restaurant = require('../models/RestaurantMdl')
 
 const getRestaurantById = (req, res) => {
   const { projection } = req
