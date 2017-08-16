@@ -2,6 +2,7 @@ angular.module('Restaurants')
   .factory('DataServices', function ($http) {
     function getAllRestaurants (limit, page) {
       console.log(limit)
+      console.log(page)
       var url = `/api/restaurants?limit=${limit}&page=${page}`
       return $http.get(url)
     }

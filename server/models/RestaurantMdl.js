@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const mongoosePaginate = require('mongoose-paginate')
 
 const collection = 'restaurants'
 
@@ -20,4 +21,5 @@ var RestaurantSchema = new Schema({
   }]
 }, { collection })
 
+RestaurantSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Restaurant', RestaurantSchema)

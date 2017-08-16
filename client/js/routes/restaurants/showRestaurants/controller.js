@@ -3,11 +3,11 @@
 (function () {
   'use strict'
 
-  function restaurantsCtrl ($routeParams, DataServices, $scope, $location) {
+  function restaurantsCtrl ($routeParams, DataServices, helper, $scope, $location) {
     var self = this
-    self.numPage = $routeParams.page
-    console.log(self.numPage)
-    showResults.bind(null, DataServices, self, 1000, self.numPage)()
+    $routeParams.page = $routeParams.page || 1
+    self.pageSelect = self.pageSelect || 10
+    showResults.bind(null, DataServices, self, self.pageSelect, $routeParams.page)()
     $scope.$on('onFilterBorough', function (e, value) {
       filterByBorough.bind(null, DataServices, self, value.value)()
     })
@@ -20,8 +20,11 @@
       self.pageSelect = self.pageSelect || 10
     }
 
-    self.next = function (value) {
-      $location.search('page', value).path('/')
+    self.next = function () {
+      helper.setNum()
+      let numPage = helper.getNum()
+      console.log(numPage)
+      $location.search('page', numPage).path('/')
     }
   }
 
@@ -43,8 +46,9 @@
   function showResults (DataServices, self, limit, page) {
     DataServices.getAllRestaurants(limit, page)
     .then(function (restaurants) {
-      self.restaurants = restaurants.data
-      self.totalRestaurants = restaurants.data.length
+      console.log(restaurants)
+      self.restaurants = restaurants.data.docs
+      self.numPage = restaurants.data.page
     })
   }
 
