@@ -1,14 +1,13 @@
-
-const getAllRestaurants = (db, req, res) => {
+const Restaurant = require('../models/restaurantMdl')
+const getAllRestaurants = (req, res) => {
   const { projection, limit, skip } = req
-  db.collection('restaurants')
-    .find({}, projection)
-    .limit(limit)
-    .skip(skip)
-    .toArray((err, aRestaurants) => {
-      if (err) throw err
-      res.json(aRestaurants)
-    })
+  Restaurant
+      .find()
+      .select(projection)
+      .limit(limit)
+      .skip(skip)
+      .then(restaurants => res.json(restaurants))
+      .catch(console.log)
 }
 
 module.exports = getAllRestaurants
