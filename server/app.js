@@ -26,4 +26,11 @@ app.get('/api/restaurants/cuisine/:cuisine', byCuisine.bind(null, false))
 app.get('/api/restaurants/cuisine/not/:cuisine', byCuisine.bind(null, true))
 app.get('/api/restaurant/:id', getRestaurantById)
 
+
+app.use(middleCreateProjector)
+app.get('/api/restaurants', getAllRestaurants)
+app.get('/api/restaurants/borough/:borough', byBorough)
+// app.get('/api/restaurants/cuisine/:cuisine', byCuisine.bind(null, db, false))
+// app.get('/api/restaurants/cuisine/not/:cuisine', byCuisine.bind(null, db, true))
+// app.get('/api/restaurant/:id', getRestaurantById)
 app.listen(PORT, () => `Listening on Port ${PORT}`)
