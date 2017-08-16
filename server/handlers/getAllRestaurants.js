@@ -1,5 +1,5 @@
 
-const Restaurant = require('../models/restaurantMdl')
+const Restaurant = require('../models/RestaurantMdl')
 const getAllRestaurants = (req, res) => {
   const { projection, limit, skip } = req
   Restaurant

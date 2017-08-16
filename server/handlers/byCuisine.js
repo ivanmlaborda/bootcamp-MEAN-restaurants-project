@@ -1,4 +1,4 @@
-const Restaurant = require('../models/RestaurantMdl.js')
+const Restaurant = require('../models/RestaurantMdl')
 function byCuisine (not, req, res) {
   const { projection, limit, skip } = req
   const { cuisine } = req.params
@@ -13,7 +13,6 @@ function byCuisine (not, req, res) {
     .limit(limit)
     .skip(skip)
     .then(restaurants => res.json(restaurants))
-
 }
 
 module.exports = byCuisine
