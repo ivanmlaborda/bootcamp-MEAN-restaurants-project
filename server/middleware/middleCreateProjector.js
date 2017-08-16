@@ -2,6 +2,9 @@ const middleCreateProjector = (req, res, next) => {
   req.projection = {}
 
   const { show = '', hide = '', limit = 10, page = 1} = req.query
+  const paginateOption = {}
+  paginateOption.limit = +limit
+  paginateOption.page = +page
 
   const oShow = show.split(',').reduce((acc, field) => {
     if (field) {
@@ -15,6 +18,7 @@ const middleCreateProjector = (req, res, next) => {
   }, {})
   req.limit = +limit
   req.skip = (page * limit) - limit
+  req.paginateOption = paginateOption
   req.projection = Object.assign({}, oShow, oHide)
   next()
 }
