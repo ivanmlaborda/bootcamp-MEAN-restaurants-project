@@ -1,7 +1,9 @@
 
 const Restaurant = require('../models/RestaurantMdl')
 const getAllRestaurants = (req, res) => {
-  const { projection, limit, skip } = req
+  const { projection, limit, skip , pages} = req
+  console.log('skip')
+  console.log(pages)
   Restaurant
       .find()
       .select(projection)

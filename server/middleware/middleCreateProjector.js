@@ -16,6 +16,9 @@ const middleCreateProjector = (req, res, next) => {
   req.limit = +limit
   req.skip = (page * limit) - limit
   req.projection = Object.assign({}, oShow, oHide)
+  // req.numPages = 'test'
+  // req.currentPage = 'test'
+  // req.numResults = 'test'
   next()
 }
 
