@@ -7,7 +7,7 @@ function byCuisine (not, req, res) {
     query = { cuisine: {$ne: cuisine} }
   }
 
-  Restaurant.collection('restaurants')
+  Restaurant
     .find(query)
     .select(projection)
     .limit(limit)
