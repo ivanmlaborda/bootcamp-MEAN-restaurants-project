@@ -5,12 +5,7 @@ const getRestaurantById = (req, res) => {
   const { id } = req.params
   // console.log(id)
   Restaurant
-    .findById(id, (err, restaurant) => {
-      if (err) throw err
-      console.log(restaurant)
-      return restaurant
-
-    })
+    .findById(id)
     .select(projection)
     .then(restaurants => res.json(restaurants))
 }

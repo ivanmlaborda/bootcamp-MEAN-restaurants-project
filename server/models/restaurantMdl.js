@@ -8,16 +8,16 @@ var RestaurantSchema = new Schema({
   borough: String,
   cuisine: String,
   address: {
-    building: String,
-	  street: String,
-	  zipcode: String,
-	  coord: [Number]
-  },
+    	building: String,
+	    street: String,
+	    zipcode: String,
+	    coord: [Number]
+    },
   grades: [{
-    date: Date,
-    grade: String,
-    score: Number
-  }]
+  date: Date,
+  grade: String,
+  score: Number
+}]
 }, { collection })
 
 module.exports = mongoose.model('Restaurant', RestaurantSchema)
