@@ -1,15 +1,18 @@
-const { ObjectId } = require('mongodb')
+const Restaurant = require('../models/RestaurantMdl.js')
 
-const getRestaurantById = (db, req, res) => {
-  console.log('hola estoy aqui')
+const getRestaurantById = (req, res) => {
   const { projection } = req
   const { id } = req.params
-  db.collection('restaurants')
-    .find({ _id: ObjectId(id) }, projection)
-    .toArray((err, aRestaurants) => {
+  // console.log(id)
+  Restaurant
+    .findById(id, (err, restaurant) => {
       if (err) throw err
-      res.json(aRestaurants)
+      console.log(restaurant)
+      return restaurant
+
     })
+    .select(projection)
+    .then(restaurants => res.json(restaurants))
 }
 
 module.exports = getRestaurantById

@@ -1,4 +1,5 @@
-function byCuisine (db, not, req, res) {
+const Restaurant = require('../models/RestaurantMdl.js')
+function byCuisine (not, req, res) {
   const { projection, limit, skip } = req
   const { cuisine } = req.params
   const query = { cuisine }
@@ -6,14 +7,13 @@ function byCuisine (db, not, req, res) {
     query = { cuisine: {$ne: cuisine} }
   }
 
-  db.collection('restaurants')
-    .find(query, projection)
+  Restaurant.collection('restaurants')
+    .find(query)
+    .select(projection)
     .limit(limit)
     .skip(skip)
-    .toArray((err, aRestaurants) => {
-      if (err) throw err
-      res.json(aRestaurants)
-    })
+    .then(restaurants => res.json(restaurants))
+
 }
 
 module.exports = byCuisine

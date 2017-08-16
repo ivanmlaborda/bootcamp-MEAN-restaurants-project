@@ -1,5 +1,7 @@
-const { MongoClient } = require('mongodb')
 const express = require('express')
+
+const mongoose = require('mongoose')
+mongoose.Promise = global.Promise
 
 const path = require('path')
 const app = express()
@@ -15,16 +17,13 @@ const getRestaurantById = require('./handlers/getRestaurantById')
 
 app.use(express.static(pathPublic))
 
-MongoClient.connect(urlDb, (err, db) => {
-  if (err) throw err
-  console.log('Connected correctly to server')
+mongoose.connect(urlDb, {useMongoClient:true})
 
-  app.use(middleCreateProjector)
-  app.get('/api/restaurants', getAllRestaurants.bind(null, db))
-  app.get('/api/restaurants/borough/:borough', byBorough.bind(null, db))
-  app.get('/api/restaurants/cuisine/:cuisine', byCuisine.bind(null, db, false))
-  app.get('/api/restaurants/cuisine/not/:cuisine', byCuisine.bind(null, db, true))
-  app.get('/api/restaurant/:id', getRestaurantById.bind(null, db))
-})
+app.use(middleCreateProjector)
+app.get('/api/restaurants', getAllRestaurants)
+app.get('/api/restaurants/borough/:borough', byBorough)
+app.get('/api/restaurants/cuisine/:cuisine', byCuisine.bind(null, false))
+app.get('/api/restaurants/cuisine/not/:cuisine', byCuisine.bind(null, true))
+app.get('/api/restaurant/:id', getRestaurantById)
 
 app.listen(PORT, () => `Listening on Port ${PORT}`)
