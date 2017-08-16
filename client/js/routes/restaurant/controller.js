@@ -7,8 +7,7 @@
     var id = $routeParams.id
     DataServices.getRestaurantById(id)
     .then(function (restaurant) {
-      vm.restaurant = restaurant.data[0]
-      console.log(vm.restaurant)
+      vm.restaurant = restaurant.data
     })
   }
 

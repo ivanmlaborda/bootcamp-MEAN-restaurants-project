@@ -7,6 +7,7 @@ angular.module('Restaurants')
     }
 
     function getRestaurantById (id) {
+      console.log(id)
       var url = '/api/restaurant/' + id
       return $http.get(url)
     }
