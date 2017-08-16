@@ -1,5 +1,5 @@
 
-const Restaurant = require('../models/RestaurantMdl')
+const Restaurant = require('../../../models/RestaurantMdl')
 const getAllRestaurants = (req, res) => {
   const { projection, skip, paginateOption } = req
   const {page, limit} = paginateOption

@@ -1,35 +1,20 @@
 const express = require('express')
-
-const mongoose = require('mongoose')
-mongoose.Promise = global.Promise
-
 const path = require('path')
 const app = express()
 const pathPublic = path.join(process.cwd(), 'client')
-const urlDb = 'mongodb://localhost:27017/test'
 const PORT = 3001
+const urlDb = 'mongodb://localhost:27017/test'
 
-const middleCreateProjector = require('./middleware/middleCreateProjector')
-const getAllRestaurants = require('./handlers/getAllRestaurants')
-const byBorough = require('./handlers/byBorough')
-const byCuisine = require('./handlers/byCuisine')
-const getRestaurantById = require('./handlers/getRestaurantById')
+const middleCreateProjector = require('./routes/middleware/middleCreateProjector')
+const routerRestaurant = require('./routes/restaurant')
+const routerRestaurants = require('./routes/restaurants')
+const mongoose = require('./db')
 
 app.use(express.static(pathPublic))
+app.use(middleCreateProjector)
+app.use(routerRestaurant)
+app.use(routerRestaurants)
 
 mongoose.connect(urlDb, {useMongoClient: true})
 
-app.use(middleCreateProjector)
-app.get('/api/restaurants', getAllRestaurants)
-app.get('/api/restaurants/borough/:borough', byBorough)
-app.get('/api/restaurants/cuisine/:cuisine', byCuisine.bind(null, false))
-app.get('/api/restaurants/cuisine/not/:cuisine', byCuisine.bind(null, true))
-app.get('/api/restaurant/:id', getRestaurantById)
-
-// app.use(middleCreateProjector)
-// app.get('/api/restaurants', getAllRestaurants)
-// app.get('/api/restaurants/borough/:borough', byBorough)
-// // app.get('/api/restaurants/cuisine/:cuisine', byCuisine.bind(null, db, false))
-// // app.get('/api/restaurants/cuisine/not/:cuisine', byCuisine.bind(null, db, true))
-// // app.get('/api/restaurant/:id', getRestaurantById)
 app.listen(PORT, () => `Listening on Port ${PORT}`)

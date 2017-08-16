@@ -1,4 +1,4 @@
-const Restaurant = require('../models/RestaurantMdl')
+const Restaurant = require('../../../models/RestaurantMdl')
 function byCuisine (not, req, res) {
   const { projection, limit, skip } = req
   const { cuisine } = req.params

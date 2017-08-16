@@ -9,10 +9,10 @@ var RestaurantSchema = new Schema({
   borough: String,
   cuisine: String,
   address: {
-    	building: String,
-	    street: String,
-	    zipcode: String,
-	    coord: [Number]
+    building: String,
+	  street: String,
+	  zipcode: String,
+	  coord: [Number]
   },
   grades: [{
     date: Date,
