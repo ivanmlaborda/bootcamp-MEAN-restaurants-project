@@ -3,10 +3,10 @@
 (function () {
   'use strict'
 
-  function restaurantsCtrl ($routeParams, DataServices, $scope, $location) {
+  function restaurantsCtrl ($routeParams, DataServices, $scope, $location, $rootScope) {
     var self = this
     $routeParams.page = $routeParams.page || 1
-    showResults.bind(null, DataServices, self, self.pageSelect, $routeParams.page, $location)()
+    showResults.bind(null, DataServices, self, self.pageSelect, $routeParams.page, $location, $rootScope)()
     $scope.$on('onFilterBorough', function (e, value) {
       filterByBorough.bind(null, DataServices, self, value.value)()
     })
@@ -17,7 +17,7 @@
     self.handlePage = function () {
       console.log(self.pageSelect)
       self.pageSelect = self.pageSelect || 10
-      showResults.bind(null, DataServices, self, self.pageSelect, $routeParams.page, $location)()
+      showResults.bind(null, DataServices, self, self.pageSelect, $routeParams.page, $location, $rootScope)()
     }
 
     self.next = function (boo, num) {
@@ -40,13 +40,14 @@
     })
   }
 
-  function showResults (DataServices, self, limit, page, $location) {
+  function showResults (DataServices, self, limit, page, $location, $rootScope) {
     DataServices.getAllRestaurants(limit, page)
     .then(function (restaurants) {
       console.log(restaurants)
       self.pages = restaurants.data.pages
       self.restaurants = restaurants.data.docs
       self.numPage = restaurants.data.page
+      $rootScope.$broadcast('restaurantsReady', { value: restaurants})
       $location.search('page', self.numPage).path('/')
     })
   }
