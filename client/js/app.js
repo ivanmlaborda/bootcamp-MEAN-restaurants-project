@@ -1,6 +1,6 @@
 /* global angular */
 (function () {
-  angular.module('Restaurants', ['ngRoute', 'angularUtils.directives.dirPagination', 'angular-loading-bar'])
+  angular.module('Restaurants', ['ngRoute', 'bw.paging', 'angular-loading-bar'])
   .run(function () {
     console.log('Angular wins')
   })

@@ -5,7 +5,6 @@ const middleCreateProjector = (req, res, next) => {
   const paginateOption = {}
   paginateOption.limit = +limit
   paginateOption.page = +page
-
   const oShow = show.split(',').reduce((acc, field) => {
     if (field) {
       acc[field] = 1

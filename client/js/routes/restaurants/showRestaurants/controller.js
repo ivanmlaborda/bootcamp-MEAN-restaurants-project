@@ -3,11 +3,10 @@
 (function () {
   'use strict'
 
-  function restaurantsCtrl ($routeParams, DataServices, helper, $scope, $location) {
+  function restaurantsCtrl ($routeParams, DataServices, $scope, $location) {
     var self = this
     $routeParams.page = $routeParams.page || 1
-    self.pageSelect = self.pageSelect || 10
-    showResults.bind(null, DataServices, self, self.pageSelect, $routeParams.page)()
+    showResults.bind(null, DataServices, self, self.pageSelect, $routeParams.page, $location)()
     $scope.$on('onFilterBorough', function (e, value) {
       filterByBorough.bind(null, DataServices, self, value.value)()
     })
@@ -16,15 +15,13 @@
     })
 
     self.handlePage = function () {
-      console.log('Hola desde handle')
+      console.log(self.pageSelect)
       self.pageSelect = self.pageSelect || 10
+      showResults.bind(null, DataServices, self, self.pageSelect, $routeParams.page, $location)()
     }
 
-    self.next = function () {
-      helper.setNum()
-      let numPage = helper.getNum()
-      console.log(numPage)
-      $location.search('page', numPage).path('/')
+    self.next = function (boo, num) {
+      $location.search('page', num).path('/')
     }
   }
 
@@ -43,12 +40,14 @@
     })
   }
 
-  function showResults (DataServices, self, limit, page) {
+  function showResults (DataServices, self, limit, page, $location) {
     DataServices.getAllRestaurants(limit, page)
     .then(function (restaurants) {
       console.log(restaurants)
+      self.pages = restaurants.data.pages
       self.restaurants = restaurants.data.docs
       self.numPage = restaurants.data.page
+      $location.search('page', self.numPage).path('/')
     })
   }
 

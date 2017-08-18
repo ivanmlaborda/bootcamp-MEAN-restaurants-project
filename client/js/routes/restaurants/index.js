@@ -8,5 +8,6 @@
     .when('/', {
       templateUrl: 'js/routes/restaurants/template.html'
     })
+    .otherwise({ redirectTo: '/?page=1' })
 })
 })()

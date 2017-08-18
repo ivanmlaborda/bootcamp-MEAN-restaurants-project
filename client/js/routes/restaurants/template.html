@@ -15,10 +15,6 @@
  </div>
 <div class="row">
     <div ng-controller="restaurantsCtrl as vm">
-      <br>
-      <input type="button" value="Next" ng-click="vm.next()">
-      <p>NumPage: {{vm.numPage}}</p>
-
       <div>
         <select ng-model="vm.pageSelect" ng-change="vm.handlePage()">
           <option ng-value="10" selected disabled>Items per page</option>
@@ -45,6 +41,14 @@
               <td><a ng-href="#!/restaurants/cuisine/{{restaurant.cuisine}}">{{restaurant.cuisine}}</a></td>
           </tbody>
         </table>
-        <!-- <dir-pagination-controls on-page-change="vm.next(newPageNumber)"></dir-pagination-controls> -->
+        <div paging
+        page="vm.numPage" 
+        page-size="vm.pageSelect" 
+        total="vm.pages"
+        show-prev-next="true"
+        show-first-last="true"
+        paging-action= "vm.next('foo', page)"
+        >
+      </div>
      </div>
 </div>
