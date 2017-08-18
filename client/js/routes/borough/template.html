@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr dir-paginate="restaurant in vm.restaurants | itemsPerPage: 10 ">
+        <tr ng-repeat="restaurant in vm.restaurants">
           <td><a ng-href="#!/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
           <td>{{restaurant.address.street}}</td>
           <td>{{restaurant.borough}}</td>
@@ -18,8 +18,6 @@
       </tbody>
       </tbody>
     </table>
-    <div class="pagination">
-      <dir-pagination-controls [max-size="10" ] [direction-links="true " ] [boundary-links="true " ]>
-      </dir-pagination-controls>
+    <div paging page="1" page-size=20 total="3444" show-prev-next="true" show-first-last="true" paging-action="vm.next('foo', page)">
     </div>
   </div>

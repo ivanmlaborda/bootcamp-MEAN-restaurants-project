@@ -14,40 +14,40 @@
     </div>
   </div>
   <div class="row">
-    <div ng-controller="restaurantsCtrl as vm">
-      <div>
-        <select ng-model="vm.pageSelect" ng-change="vm.handlePage()">
-          <option ng-value="10" selected disabled>Items per page</option>
-          <option ng-value="10">10</option>
-          <option ng-value="20">20</option>
-          <option ng-value="50">50</option>
-          <option ng-value="100">100</option>
-        </select>
-      </div>
-      <table class="table">
-        <thead>
-          <tr>
+    <div class="col-sm-6">
+      <div ng-controller="restaurantsCtrl as vm">
+        <div>
+          <select ng-model="vm.pageSelect" ng-change="vm.handlePage()">
+            <option ng-value="10" selected disabled>Items per page</option>
+            <option ng-value="10">10</option>
+            <option ng-value="20">20</option>
+            <option ng-value="50">50</option>
+            <option ng-value="100">100</option>
+          </select>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
 
-            <th>Name</th>
-            <th>Borough</th>
-            <th>Cuisine</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="restaurant in vm.restaurants | filter: searchText ">
+              <th>Name</th>
+              <th>Borough</th>
+              <th>Cuisine</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="restaurant in vm.restaurants | filter: searchText ">
 
-            <td><a ng-href="#!/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
-            <td><a ng-href="#!/restaurants/borough/{{restaurant.borough}}">{{restaurant.borough}}</a></td>
-            <td><a ng-href="#!/restaurants/cuisine/{{restaurant.cuisine}}">{{restaurant.cuisine}}</a></td>
-        </tbody>
-      </table>
-      <div paging page="vm.numPage" page-size="vm.pageSelect" total="vm.pages" show-prev-next="true" show-first-last="true" paging-action="vm.next('foo', page)">
+              <td><a ng-href="#!/restaurant/{{restaurant._id}}">{{restaurant.name}}</a></td>
+              <td><a ng-href="#!/restaurants/borough/{{restaurant.borough}}">{{restaurant.borough}}</a></td>
+              <td><a ng-href="#!/restaurants/cuisine/{{restaurant.cuisine}}">{{restaurant.cuisine}}</a></td>
+          </tbody>
+        </table>
+        <div paging page="vm.numPage" page-size=20 total="vm.pages" show-prev-next="true" show-first-last="true" paging-action="vm.next('foo', page)">
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
     <div ng-controller="mapCtrl as vm">
-      <div class="container">
+      <div class="col-sm-6">
         <div id="map" class="map"></div>
       </div>
     </div>
